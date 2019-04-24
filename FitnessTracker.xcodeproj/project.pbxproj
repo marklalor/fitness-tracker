@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D6E4B322270BDB400D0B50E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E4B312270BDB400D0B50E /* EditViewController.swift */; };
+		4D6E4B342270BDC400D0B50E /* VisualizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E4B332270BDC400D0B50E /* VisualizationsViewController.swift */; };
 		BAD18F4A2270B8AC00CB3D18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD18F492270B8AC00CB3D18 /* AppDelegate.swift */; };
-		BAD18F4C2270B8AC00CB3D18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD18F4B2270B8AC00CB3D18 /* ViewController.swift */; };
+		BAD18F4C2270B8AC00CB3D18 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD18F4B2270B8AC00CB3D18 /* DataViewController.swift */; };
 		BAD18F4F2270B8AC00CB3D18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAD18F4D2270B8AC00CB3D18 /* Main.storyboard */; };
 		BAD18F512270B8AD00CB3D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAD18F502270B8AD00CB3D18 /* Assets.xcassets */; };
 		BAD18F542270B8AD00CB3D18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAD18F522270B8AD00CB3D18 /* LaunchScreen.storyboard */; };
@@ -34,9 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D6E4B312270BDB400D0B50E /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		4D6E4B332270BDC400D0B50E /* VisualizationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualizationsViewController.swift; sourceTree = "<group>"; };
 		BAD18F462270B8AC00CB3D18 /* FitnessTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD18F492270B8AC00CB3D18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BAD18F4B2270B8AC00CB3D18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BAD18F4B2270B8AC00CB3D18 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		BAD18F4E2270B8AC00CB3D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BAD18F502270B8AD00CB3D18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAD18F532270B8AD00CB3D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,7 +102,9 @@
 			isa = PBXGroup;
 			children = (
 				BAD18F492270B8AC00CB3D18 /* AppDelegate.swift */,
-				BAD18F4B2270B8AC00CB3D18 /* ViewController.swift */,
+				BAD18F4B2270B8AC00CB3D18 /* DataViewController.swift */,
+				4D6E4B312270BDB400D0B50E /* EditViewController.swift */,
+				4D6E4B332270BDC400D0B50E /* VisualizationsViewController.swift */,
 				BAD18F4D2270B8AC00CB3D18 /* Main.storyboard */,
 				BAD18F502270B8AD00CB3D18 /* Assets.xcassets */,
 				BAD18F522270B8AD00CB3D18 /* LaunchScreen.storyboard */,
@@ -256,8 +262,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAD18F4C2270B8AC00CB3D18 /* ViewController.swift in Sources */,
+				BAD18F4C2270B8AC00CB3D18 /* DataViewController.swift in Sources */,
+				4D6E4B342270BDC400D0B50E /* VisualizationsViewController.swift in Sources */,
 				BAD18F4A2270B8AC00CB3D18 /* AppDelegate.swift in Sources */,
+				4D6E4B322270BDB400D0B50E /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
