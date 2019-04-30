@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D38DB44227780A1007DB154 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D38DB43227780A1007DB154 /* DataModel.swift */; };
 		4D6E4B322270BDB400D0B50E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E4B312270BDB400D0B50E /* EditViewController.swift */; };
 		4D6E4B342270BDC400D0B50E /* VisualizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E4B332270BDC400D0B50E /* VisualizationsViewController.swift */; };
 		BAD18F4A2270B8AC00CB3D18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD18F492270B8AC00CB3D18 /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D38DB43227780A1007DB154 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4D6E4B312270BDB400D0B50E /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		4D6E4B332270BDC400D0B50E /* VisualizationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualizationsViewController.swift; sourceTree = "<group>"; };
 		BAD18F462270B8AC00CB3D18 /* FitnessTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 				BAD18F502270B8AD00CB3D18 /* Assets.xcassets */,
 				BAD18F522270B8AD00CB3D18 /* LaunchScreen.storyboard */,
 				BAD18F552270B8AD00CB3D18 /* Info.plist */,
+				4D38DB43227780A1007DB154 /* DataModel.swift */,
 			);
 			path = FitnessTracker;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D38DB44227780A1007DB154 /* DataModel.swift in Sources */,
 				BAD18F4C2270B8AC00CB3D18 /* DataViewController.swift in Sources */,
 				4D6E4B342270BDC400D0B50E /* VisualizationsViewController.swift in Sources */,
 				BAD18F4A2270B8AC00CB3D18 /* AppDelegate.swift in Sources */,
