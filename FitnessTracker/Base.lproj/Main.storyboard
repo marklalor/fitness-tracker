@@ -166,10 +166,10 @@
             </objects>
             <point key="canvasLocation" x="1676.8115942028987" y="20.758928571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Strength Entry View Controller-->
         <scene sceneID="5J6-Ap-882">
             <objects>
-                <viewController id="M0i-uT-Jzb" sceneMemberID="viewController">
+                <viewController id="M0i-uT-Jzb" customClass="AddStrengthEntryViewController" customModule="FitnessTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bmV-Wx-k4p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,7 +263,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJv-Pd-oUF">
-                                <rect key="frame" x="0.0" y="258" width="41" height="21"/>
+                                <rect key="frame" x="20" y="258" width="41" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -273,6 +273,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="V9z-ZO-zrP"/>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="gRd-Zm-B5C" id="meD-4I-new"/>
+                        <outlet property="details" destination="Pdj-Di-XMU" id="oPJ-LY-tQD"/>
+                        <outlet property="exerciseName" destination="JDp-3J-tge" id="FVy-eh-cPj"/>
+                        <outlet property="reps" destination="lYp-Gn-fMp" id="qxc-Cf-d4e"/>
+                        <outlet property="sets" destination="ops-kh-l44" id="9Ld-dD-b7v"/>
+                        <outlet property="weight" destination="e1i-Lr-UHP" id="QuA-5S-NbY"/>
+                        <outlet property="weightUnit" destination="Mw7-N7-cHO" id="wUf-Be-6xz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bje-pV-Kql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
