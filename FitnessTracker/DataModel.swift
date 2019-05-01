@@ -18,7 +18,19 @@ extension Date {
     }
 }
 
-class StrengthTrainingEntry {
+class WorkoutEntry {
+    var exerciseName: String?
+    var date: Date?
+    var details: String?
+    
+    init(exerciseName: String?, date: Date?, details: String?) {
+        self.exerciseName = exerciseName
+        self.date = date
+        self.details = details
+    }
+}
+
+class StrengthTrainingEntry: WorkoutEntry {
     enum WeightUnit: String, CaseIterable {
         case pounds, kilograms
         
@@ -27,22 +39,17 @@ class StrengthTrainingEntry {
         }
     }
     
-    var exerciseName: String?
-    var date: Date?
     var weight: Int?
     var weightUnit: WeightUnit?
     var reps: Int?
     var sets: Int?
-    var details: String?
 
     init(exerciseName: String?, date: Date?, weight: Int?, weightUnit: WeightUnit?, reps: Int?, sets: Int?, details: String?) {
-        self.exerciseName = exerciseName
-        self.date = date
+        super.init(exerciseName: exerciseName, date: date, details: details)
         self.weight = weight
         self.weightUnit = weightUnit
         self.reps = reps
         self.sets = sets
-        self.details = details
     }
     
     static func fromDictionary(_ dictionary: [String:Any]) -> StrengthTrainingEntry {
@@ -68,7 +75,7 @@ class StrengthTrainingEntry {
 }
 
 
-class CardioEntry {
+class CardioEntry: WorkoutEntry {
     enum DurationUnit: String, CaseIterable {
         case seconds, minutes, hours
         
@@ -77,18 +84,13 @@ class CardioEntry {
         }
     }
     
-    var exerciseName: String?
-    var date: Date?
     var duration: Int?
     var durationUnit: DurationUnit?
-    var details: String?
 
     init(exerciseName: String?, date: Date?, duration: Int?, durationUnit: DurationUnit?, details: String?) {
-        self.exerciseName = exerciseName
-        self.date = date
+        super.init(exerciseName: exerciseName, date: date, details: details)
         self.duration = duration
         self.durationUnit = durationUnit
-        self.details = details
     }
     
     static func fromDictionary(_ dictionary: [String:Any]) -> CardioEntry {

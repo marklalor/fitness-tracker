@@ -10,6 +10,7 @@
 		4D38DB44227780A1007DB154 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D38DB43227780A1007DB154 /* DataModel.swift */; };
 		4D6E4B322270BDB400D0B50E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E4B312270BDB400D0B50E /* EditViewController.swift */; };
 		4D6E4B342270BDC400D0B50E /* VisualizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E4B332270BDC400D0B50E /* VisualizationsViewController.swift */; };
+		BA999224227928D3000B9DA0 /* CategoryDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA999223227928D3000B9DA0 /* CategoryDataViewController.swift */; };
 		BAD18F4A2270B8AC00CB3D18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD18F492270B8AC00CB3D18 /* AppDelegate.swift */; };
 		BAD18F4C2270B8AC00CB3D18 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD18F4B2270B8AC00CB3D18 /* DataViewController.swift */; };
 		BAD18F4F2270B8AC00CB3D18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAD18F4D2270B8AC00CB3D18 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		4D38DB43227780A1007DB154 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4D6E4B312270BDB400D0B50E /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		4D6E4B332270BDC400D0B50E /* VisualizationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualizationsViewController.swift; sourceTree = "<group>"; };
+		BA999223227928D3000B9DA0 /* CategoryDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataViewController.swift; sourceTree = "<group>"; };
 		BAD18F462270B8AC00CB3D18 /* FitnessTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD18F492270B8AC00CB3D18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAD18F4B2270B8AC00CB3D18 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				BAD18F522270B8AD00CB3D18 /* LaunchScreen.storyboard */,
 				BAD18F552270B8AD00CB3D18 /* Info.plist */,
 				4D38DB43227780A1007DB154 /* DataModel.swift */,
+				BA999223227928D3000B9DA0 /* CategoryDataViewController.swift */,
 			);
 			path = FitnessTracker;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				BAD18F4C2270B8AC00CB3D18 /* DataViewController.swift in Sources */,
 				4D6E4B342270BDC400D0B50E /* VisualizationsViewController.swift in Sources */,
 				BAD18F4A2270B8AC00CB3D18 /* AppDelegate.swift in Sources */,
+				BA999224227928D3000B9DA0 /* CategoryDataViewController.swift in Sources */,
 				4D6E4B322270BDB400D0B50E /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
