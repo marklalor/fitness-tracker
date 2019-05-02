@@ -18,6 +18,8 @@ class AddCardioEntryViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     public var exercises: [String] = []
     public var model: DataModel!
+    public var entry: CardioEntry!
+    public var entryIndex: Int!
     
     let units = ["minutes", "seconds", "hours"]
     
@@ -30,6 +32,36 @@ class AddCardioEntryViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveAndExit(sender:)))
         self.navigationItem.rightBarButtonItem = saveButton
+        
+        loadFields()
+    }
+    
+    func loadFields() {
+        if (self.entry != nil){ // we are not adding a new entry but rather loading an existing one
+            if (entry.duration != nil){
+                duration.text = String(entry.duration!)
+            }
+            if (entry.details != nil){
+                details.text = String(entry.details!)
+            }
+            if (entry.date != nil) {
+                self.datePicker.setDate(entry.date!, animated: false)
+            }
+            if (entry.durationUnit != nil){
+                let str = entry.durationUnit!.rawValue
+                let index = CardioEntry.DurationUnit.allCases.index(of: CardioEntry.DurationUnit(rawValue: str)!)
+                self.durationUnit.selectRow(index!, inComponent: 0, animated: true)
+            }
+            if (entry.exerciseName != nil){
+                let index = self.model.strengthTrainingExercises.sorted().index(of: entry.exerciseName!)
+                if (index != nil){
+                    self.exercisePicker.selectRow(index!, inComponent: 0, animated: true)
+                }
+                else {
+                    self.exercisePicker.selectRow(0, inComponent: 0, animated: true)
+                }
+            }
+        }
     }
     
     func createNewEntry() -> CardioEntry? {
@@ -50,14 +82,24 @@ class AddCardioEntryViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     @objc func saveAndExit(sender: UIBarButtonItem) {
-        if let entry = createNewEntry() {
-            self.model.cardioEntries.append(entry)
-            self.model.persist()
-            self.navigationController?.popViewController(animated: true)
-        } else {
-            let alert = UIAlertController(title: "Could not save entry", message: "Not all fields filled out", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        if (self.entry == nil){
+            if let entry = createNewEntry() {
+                self.model.cardioEntries.append(entry)
+                self.model.persist()
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                let alert = UIAlertController(title: "Could not save entry", message: "Not all fields filled out", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        else {
+            if let entry = createNewEntry(){
+                self.model.cardioEntries.remove(at: self.entryIndex)
+                self.model.cardioEntries.append(entry)
+                self.model.persist()
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     
