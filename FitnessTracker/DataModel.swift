@@ -112,12 +112,21 @@ class CardioEntry: WorkoutEntry {
 }
 
 class DataModel {
+    
+    static let DEFAULT_STRENGTH_TRAINING_EXERCISES: Set = ["Leg press", "Lunge", "Deadlift", "Leg extension", "Leg curl", "Standing calf raise", "Seated calf raise", "Hip adductor", "Bench press", "Chest fly", "Push-up", "Pull-down", "Pull-up", "Bent-over", "Upright row", "Shoulder press", "Shoulder fly", "Lateral raise", "Shoulder shrug", "Pushdown", "Triceps extension", "Biceps curl", "Crunch", "Russian twist", "Leg raise", "Back extension"]
+    
+    static let DEFAULT_CARIO_EXERCISES: Set = ["Walking", "Running/Jogging", "Cycling", "Swimming", "Rowing", "Dancing"]
+    
     var strengthTrainingEntries: [StrengthTrainingEntry]
     var cardioEntries: [CardioEntry]
+    var strengthTrainingExercises: Set<String>
+    var cardioExercises: Set<String>
 
-    init(_ strengthTrainingEntries: [StrengthTrainingEntry], _ cardioEntries: [CardioEntry]) {
+    init(strengthTrainingEntries: [StrengthTrainingEntry], cardioEntries: [CardioEntry], strengthTrainingExercises: Set<String>, cardioExercises: Set<String>) {
         self.strengthTrainingEntries = strengthTrainingEntries
         self.cardioEntries = cardioEntries
+        self.strengthTrainingExercises = strengthTrainingExercises
+        self.cardioExercises = cardioExercises
     }
     
     public static func fromStorage() -> DataModel {
@@ -129,29 +138,43 @@ class DataModel {
             CardioEntry.fromDictionary(dict)
         }
         
-        return DataModel(strengthTrainingEntries, cardioEntries)
+        let strengthExercises = setFromJson(jsonString: unpersist(key: "strengthExercises"), defaults: DEFAULT_STRENGTH_TRAINING_EXERCISES)
+        
+        let cardioExercises = setFromJson(jsonString: unpersist(key: "cardioExercises"), defaults: DEFAULT_CARIO_EXERCISES)
+        
+        return DataModel(strengthTrainingEntries: strengthTrainingEntries, cardioEntries: cardioEntries, strengthTrainingExercises: strengthExercises, cardioExercises: cardioExercises)
     }
     
-    private static func makeJsonString(from object: [[String:Any]]) -> String? {
+    private static func makeJsonString(from object: Any) -> String? {
         guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
             fatalError("Could not save data.")
         }
         return String(data: data, encoding: String.Encoding.utf8)
     }
     
-    private static func objectFromJson<T>(jsonString: String, initFunction: ([String:AnyObject]) -> T) -> [T] {
-        if let jsonData = jsonString.data(using: String.Encoding.utf8) {
+    private static func objectFromJson<T>(jsonString: String?, initFunction: ([String:AnyObject]) -> T) -> [T] {
+        if let jsonData = jsonString?.data(using: String.Encoding.utf8) {
             if let jsonObjects = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String:AnyObject]] {
-                return jsonObjects!.map{initFunction($0)}
+                return jsonObjects?.map{initFunction($0)} ?? []
             }
         }
         
         return []
     }
     
-    private static func unpersist(key: String) -> String {
+    private static func setFromJson(jsonString: String?, defaults: Set<String>) -> Set<String> {
+        if let jsonData = jsonString?.data(using: String.Encoding.utf8) {
+            if let jsonObjects = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String] {
+                return jsonObjects.map{Set<String>($0)} ?? defaults
+            }
+        }
+        
+        return defaults
+    }
+    
+    private static func unpersist(key: String) -> String? {
         let defaults = UserDefaults(suiteName: "data")
-        return defaults?.string(forKey: key) ?? "[]"
+        return defaults?.string(forKey: key)
     }
     
     private static func persist(data object: String, key: String) {
@@ -165,5 +188,11 @@ class DataModel {
         
         let cardioJsonString = DataModel.makeJsonString(from: self.cardioEntries.map{$0.toDictionary()})!
         DataModel.persist(data: cardioJsonString, key: "cardio")
+        
+        let strengthTrainingExercisesJsonString = DataModel.makeJsonString(from: self.strengthTrainingExercises.sorted())!
+        DataModel.persist(data: strengthTrainingExercisesJsonString, key: "strengthExercises")
+        
+        let cardioExercisesJsonString = DataModel.makeJsonString(from: self.cardioExercises.sorted())!
+        DataModel.persist(data: cardioExercisesJsonString, key: "cardioExercises")
     }
 }

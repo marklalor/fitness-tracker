@@ -1,61 +1,57 @@
 //
-//  AddEntryViewController.swift
+//  AddCardioEntryViewController.swift
 //  FitnessTracker
 //
-//  Created by Jenny Zhao on 5/1/19.
+//  Created by Mark Lalor on 5/1/19.
 //  Copyright © 2019 Jenny Zhao. All rights reserved.
 //
 
 import UIKit
 
-class AddStrengthEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddCardioEntryViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var exercisePicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var weight: UITextField!
-    @IBOutlet weak var weightUnit: UIPickerView!
-    @IBOutlet weak var reps: UITextField!
-    @IBOutlet weak var sets: UITextField!
+    @IBOutlet weak var duration: UITextField!
+    @IBOutlet weak var durationUnit: UIPickerView!
     @IBOutlet weak var details: UITextField!
     
-    public var exercises: [String]!
+    public var exercises: [String] = []
     public var model: DataModel!
     
-    let units = ["pounds", "kilograms"]
+    let units = ["minutes", "seconds", "hours"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.exercisePicker.delegate = self
         self.exercisePicker.dataSource = self
-        self.weightUnit.delegate = self
-        self.weightUnit.dataSource = self
+        self.durationUnit.delegate = self
+        self.durationUnit.dataSource = self
         
         let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveAndExit(sender:)))
         self.navigationItem.rightBarButtonItem = saveButton
     }
     
-    func createNewEntry() -> StrengthTrainingEntry? {
+    func createNewEntry() -> CardioEntry? {
         let exercise = self.exercises[self.exercisePicker.selectedRow(inComponent: 0)]
         let date = self.datePicker.date
-        let weight = self.weight.text.flatMap{Int($0)}
-        let weightUnit = self.units[self.weightUnit.selectedRow(inComponent: 0)]
-        let weightUnitEnum = StrengthTrainingEntry.WeightUnit.fromString(weightUnit)
-        let reps = self.reps.text.flatMap{Int($0)}
-        let sets = self.sets.text.flatMap{Int($0)}
+        let duration = self.duration.text.flatMap{Int($0)}
+        let durationUnit = self.units[self.durationUnit.selectedRow(inComponent: 0)]
+        let durationUnitEnum = CardioEntry.DurationUnit.fromString(durationUnit)
         let details = self.details.text
         
-        if weight == nil || reps == nil || sets == nil {
+        if duration == nil {
             // return nil if there is not enough information to create a complete entry.
             // Will show an error message
             return nil
         } else {
-        return StrengthTrainingEntry(exerciseName: exercise, date: date, weight: weight, weightUnit: weightUnitEnum, reps: reps, sets: sets, details: details)
+            return CardioEntry(exerciseName: exercise, date: date, duration: duration, durationUnit: durationUnitEnum, details: details)
         }
     }
     
     @objc func saveAndExit(sender: UIBarButtonItem) {
         if let entry = createNewEntry() {
-            self.model.strengthTrainingEntries.append(entry)
+            self.model.cardioEntries.append(entry)
             self.model.persist()
             self.navigationController?.popViewController(animated: true)
         } else {
@@ -80,5 +76,5 @@ class AddStrengthEntryViewController: UIViewController, UIPickerViewDelegate, UI
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return data(for: pickerView)[row]
     }
-
 }
+

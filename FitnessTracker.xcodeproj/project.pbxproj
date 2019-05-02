@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D153985227A644F001CF4A1 /* AddCardioEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D153984227A644F001CF4A1 /* AddCardioEntryViewController.swift */; };
 		4D38DB44227780A1007DB154 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D38DB43227780A1007DB154 /* DataModel.swift */; };
 		4D6E4B322270BDB400D0B50E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E4B312270BDB400D0B50E /* EditViewController.swift */; };
 		4D6E4B342270BDC400D0B50E /* VisualizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E4B332270BDC400D0B50E /* VisualizationsViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D153984227A644F001CF4A1 /* AddCardioEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardioEntryViewController.swift; sourceTree = "<group>"; };
 		4D38DB43227780A1007DB154 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4D6E4B312270BDB400D0B50E /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		4D6E4B332270BDC400D0B50E /* VisualizationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualizationsViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				4D38DB43227780A1007DB154 /* DataModel.swift */,
 				BA999223227928D3000B9DA0 /* CategoryDataViewController.swift */,
 				BA999225227953F6000B9DA0 /* AddStrengthEntryViewController.swift */,
+				4D153984227A644F001CF4A1 /* AddCardioEntryViewController.swift */,
 			);
 			path = FitnessTracker;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				4D6E4B342270BDC400D0B50E /* VisualizationsViewController.swift in Sources */,
 				BA999226227953F6000B9DA0 /* AddStrengthEntryViewController.swift in Sources */,
 				BAD18F4A2270B8AC00CB3D18 /* AppDelegate.swift in Sources */,
+				4D153985227A644F001CF4A1 /* AddCardioEntryViewController.swift in Sources */,
 				BA999224227928D3000B9DA0 /* CategoryDataViewController.swift in Sources */,
 				4D6E4B322270BDB400D0B50E /* EditViewController.swift in Sources */,
 			);
