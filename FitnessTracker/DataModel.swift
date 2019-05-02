@@ -137,7 +137,6 @@ class DataModel {
     public func sortEntriesByDate() {
         self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { return $0.date! < $1.date! }
         self.cardioEntries = self.cardioEntries.sorted { return $0.date! < $1.date! }
-
     }
     
     public static func fromStorage() -> DataModel {

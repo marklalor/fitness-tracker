@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e2s-SY-U6x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e2s-SY-U6x">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -393,7 +393,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Duration over Time"/>
                                 <connections>
-                                    <segue destination="Szj-m3-kkg" kind="show" id="fBn-ok-j8i"/>
+                                    <segue destination="Szj-m3-kkg" kind="show" id="6Qp-bI-GfG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xu-MG-u9F">
@@ -401,7 +401,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Exercise Distribution"/>
                                 <connections>
-                                    <segue destination="Szj-m3-kkg" kind="show" id="cKn-Zs-HST"/>
+                                    <segue destination="Ac8-hm-JIo" kind="show" id="JHM-DK-bwT"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TLj-sP-5z7">
@@ -434,7 +434,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Exercise Distribution"/>
                                 <connections>
-                                    <segue destination="Szj-m3-kkg" kind="show" id="Iul-WR-rxg"/>
+                                    <segue destination="Ac8-hm-JIo" kind="show" id="RUV-86-ELA"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Visualizations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AF8-QZ-ri3">
@@ -465,20 +465,55 @@
             </objects>
             <point key="canvasLocation" x="957.97101449275374" y="735.9375"/>
         </scene>
-        <!--Chart Controller-->
+        <!--Pie Chart Controller-->
+        <scene sceneID="non-a8-rSx">
+            <objects>
+                <viewController id="Ac8-hm-JIo" customClass="PieChartController" customModule="FitnessTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5aJ-Ig-NC6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ko-24-LRW" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="137" width="374" height="676"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="FCN-em-Kbl"/>
+                    </view>
+                    <connections>
+                        <outlet property="pieChartView" destination="1ko-24-LRW" id="LYd-i2-HfV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N6k-Av-7qH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="957.97101449275374" y="1490.625"/>
+        </scene>
+        <!--Line Chart Controller-->
         <scene sceneID="2YJ-fe-Onh">
             <objects>
-                <viewController id="Szj-m3-kkg" customClass="ChartController" customModule="FitnessTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Szj-m3-kkg" customClass="LineChartController" customModule="FitnessTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b1v-96-HGI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qX9-CK-Nja" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="137" width="374" height="676"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BR6-76-d6j"/>
                     </view>
+                    <connections>
+                        <outlet property="lineChartView" destination="qX9-CK-Nja" id="dOH-ee-O0p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cwQ-z9-9ro" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1912" y="736"/>
+            <point key="canvasLocation" x="1911.594202898551" y="735.9375"/>
         </scene>
         <!--Edit Exercises-->
         <scene sceneID="WxB-js-nBN">
@@ -627,6 +662,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fBn-ok-j8i"/>
+        <segue reference="dql-7A-8MM"/>
+        <segue reference="RUV-86-ELA"/>
     </inferredMetricsTieBreakers>
 </document>
