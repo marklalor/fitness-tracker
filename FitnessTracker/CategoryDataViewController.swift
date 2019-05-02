@@ -74,11 +74,35 @@ class CategoryDataViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
+        if (category == "Strength Training"){
+            self.performSegue(withIdentifier: "addStrengthEntry", sender: self)
+
+        }
+        else if (category == "Cardio Training"){
+            self.performSegue(withIdentifier: "addCardioEntry", sender: self)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addStrengthEntry" {
+            let destinationController = segue.destination as! AddStrengthEntryViewController
+            destinationController.exercises = self.model.strengthTrainingExercises.sorted()
+            destinationController.model = self.model
+            destinationController.entry = self.model.strengthTrainingEntries[(tableView.indexPathForSelectedRow?.row)!]
+            destinationController.entryIndex = (tableView.indexPathForSelectedRow?.row)!
+        }
+        else if segue.identifier == "addCardioEntry" {
+            let destinationController = segue.destination as! AddCardioEntryViewController
+            destinationController.exercises = self.model.strengthTrainingExercises.sorted()
+            destinationController.model = self.model
+            destinationController.entry = self.model.cardioEntries[(tableView.indexPathForSelectedRow?.row)!]
+            destinationController.entryIndex = (tableView.indexPathForSelectedRow?.row)!
+            print("CRsg")
+        }
     }
 
 }
