@@ -73,6 +73,23 @@ class CategoryDataViewController: UIViewController, UITableViewDelegate, UITable
         return cell;
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (category == "Strength Training"){
+            if editingStyle == UITableViewCell.EditingStyle.delete {
+                self.model.strengthTrainingEntries.remove(at: indexPath.row)
+                self.model.persist()
+                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            }
+        }
+        else {
+            if editingStyle == UITableViewCell.EditingStyle.delete {
+                self.model.cardioEntries.remove(at: indexPath.row)
+                self.model.persist()
+                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (category == "Strength Training"){
             self.performSegue(withIdentifier: "addStrengthEntry", sender: self)

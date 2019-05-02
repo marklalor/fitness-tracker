@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Charts
 
 class VisualizationsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     var model: DataModel!

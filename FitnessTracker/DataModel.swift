@@ -194,5 +194,6 @@ class DataModel {
         
         let cardioExercisesJsonString = DataModel.makeJsonString(from: self.cardioExercises.sorted())!
         DataModel.persist(data: cardioExercisesJsonString, key: "cardioExercises")
+        
     }
 }

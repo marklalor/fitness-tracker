@@ -20,8 +20,6 @@
 		BAD18F542270B8AD00CB3D18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAD18F522270B8AD00CB3D18 /* LaunchScreen.storyboard */; };
 		BAD18F5F2270B8AD00CB3D18 /* FitnessTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD18F5E2270B8AD00CB3D18 /* FitnessTrackerTests.swift */; };
 		BAD18F6A2270B8AD00CB3D18 /* FitnessTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD18F692270B8AD00CB3D18 /* FitnessTrackerUITests.swift */; };
-		BAE70EF9227B6FA500170973 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE70EF6227B6F9600170973 /* Charts.framework */; };
-		BAE70EFA227B6FA500170973 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BAE70EF6227B6F9600170973 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,27 +37,6 @@
 			remoteGlobalIDString = BAD18F452270B8AC00CB3D18;
 			remoteInfo = FitnessTracker;
 		};
-		BAE70EF5227B6F9600170973 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BAE70EF0227B6F9600170973 /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
-			remoteInfo = Charts;
-		};
-		BAE70EF7227B6F9600170973 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BAE70EF0227B6F9600170973 /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
-			remoteInfo = ChartsTests;
-		};
-		BAE70EFB227B6FA500170973 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BAE70EF0227B6F9600170973 /* Charts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A58A4ED274A941CA248EA921;
-			remoteInfo = Charts;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,7 +46,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BAE70EFA227B6FA500170973 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,7 +72,6 @@
 		BAD18F652270B8AD00CB3D18 /* FitnessTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitnessTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD18F692270B8AD00CB3D18 /* FitnessTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessTrackerUITests.swift; sourceTree = "<group>"; };
 		BAD18F6B2270B8AD00CB3D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAE70EF0227B6F9600170973 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +79,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAE70EF9227B6FA500170973 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +109,6 @@
 		BAD18F3D2270B8AC00CB3D18 = {
 			isa = PBXGroup;
 			children = (
-				BAE70EF0227B6F9600170973 /* Charts.xcodeproj */,
 				BAD18F482270B8AC00CB3D18 /* FitnessTracker */,
 				BAD18F5D2270B8AD00CB3D18 /* FitnessTrackerTests */,
 				BAD18F682270B8AD00CB3D18 /* FitnessTrackerUITests */,
@@ -191,15 +164,6 @@
 			path = FitnessTrackerUITests;
 			sourceTree = "<group>";
 		};
-		BAE70EF1227B6F9600170973 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BAE70EF6227B6F9600170973 /* Charts.framework */,
-				BAE70EF8227B6F9600170973 /* ChartsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -215,7 +179,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				BAE70EFC227B6FA500170973 /* PBXTargetDependency */,
 			);
 			name = FitnessTracker;
 			productName = FitnessTracker;
@@ -292,12 +255,6 @@
 			mainGroup = BAD18F3D2270B8AC00CB3D18;
 			productRefGroup = BAD18F472270B8AC00CB3D18 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = BAE70EF1227B6F9600170973 /* Products */;
-					ProjectRef = BAE70EF0227B6F9600170973 /* Charts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				BAD18F452270B8AC00CB3D18 /* FitnessTracker */,
@@ -306,23 +263,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		BAE70EF6227B6F9600170973 /* Charts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Charts.framework;
-			remoteRef = BAE70EF5227B6F9600170973 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		BAE70EF8227B6F9600170973 /* ChartsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ChartsTests.xctest;
-			remoteRef = BAE70EF7227B6F9600170973 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BAD18F442270B8AC00CB3D18 /* Resources */ = {
@@ -395,11 +335,6 @@
 			isa = PBXTargetDependency;
 			target = BAD18F452270B8AC00CB3D18 /* FitnessTracker */;
 			targetProxy = BAD18F662270B8AD00CB3D18 /* PBXContainerItemProxy */;
-		};
-		BAE70EFC227B6FA500170973 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = BAE70EFB227B6FA500170973 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
