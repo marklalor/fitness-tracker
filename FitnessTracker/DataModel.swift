@@ -103,11 +103,11 @@ class CardioEntry: WorkoutEntry {
     }
     
     func toDictionary() -> [String:Any] {
-        return ["exerciseName": exerciseName,
-                "date": date?.millisecondsSince1970,
-                "duration": duration,
-                "durationUnit": durationUnit?.rawValue,
-                "details": details]
+        return ["exerciseName": exerciseName as Any,
+                "date": date?.millisecondsSince1970 as Any,
+                "duration": duration as Any,
+                "durationUnit": durationUnit?.rawValue as Any,
+                "details": details as Any]
     }
 }
 
@@ -127,6 +127,17 @@ class DataModel {
         self.cardioEntries = cardioEntries
         self.strengthTrainingExercises = strengthTrainingExercises
         self.cardioExercises = cardioExercises
+    }
+    
+    public func sortEntriesByName() {
+        self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { $0.exerciseName! < $1.exerciseName! }
+        self.cardioEntries = self.cardioEntries.sorted { $0.exerciseName! < $1.exerciseName! }
+    }
+    
+    public func sortEntriesByDate() {
+        self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { return $0.date! < $1.date! }
+        self.cardioEntries = self.cardioEntries.sorted { return $0.date! < $1.date! }
+
     }
     
     public static func fromStorage() -> DataModel {

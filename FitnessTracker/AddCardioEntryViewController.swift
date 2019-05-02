@@ -25,6 +25,7 @@ class AddCardioEntryViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.datePicker.maximumDate = Date()
         self.exercisePicker.delegate = self
         self.exercisePicker.dataSource = self
         self.durationUnit.delegate = self

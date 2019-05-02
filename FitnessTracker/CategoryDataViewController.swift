@@ -9,6 +9,7 @@
 import UIKit
 
 class CategoryDataViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    @IBOutlet weak var sortPicker: UISegmentedControl!
     
     var category: String!
     var model : DataModel!
@@ -19,6 +20,18 @@ class CategoryDataViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+    }
+    
+    
+    @IBAction func sortBy(_ sender: Any) {
+        if (sortPicker.titleForSegment(at: sortPicker.selectedSegmentIndex) == "Exercise Name"){
+            self.model!.sortEntriesByName()
+            tableView.reloadData()
+        }
+        else if (sortPicker.titleForSegment(at: sortPicker.selectedSegmentIndex) == "Date"){
+            self.model.sortEntriesByDate()
+            tableView.reloadData()
+        }
     }
     
     func addNavbarButton() {
@@ -55,16 +68,20 @@ class CategoryDataViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MMM-yyyy"
         let cellIdentifier = "ExerciseEntryCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? UITableViewCell  else {
             fatalError("The dequeued cell is not an instance of ExerciseCategoryCell.")
         }
         if (category == "Strength Training"){
             cell.textLabel?.text = self.model.strengthTrainingEntries[indexPath.row].exerciseName
-            print("St")
+            cell.detailTextLabel?.text = formatter.string(from: self.model.strengthTrainingEntries[indexPath.row].date!)
+            print(formatter.string(from: self.model.strengthTrainingEntries[indexPath.row].date!))
         }
         else if (category == "Cardio Training"){
             cell.textLabel?.text = self.model.cardioEntries[indexPath.row].exerciseName
+            cell.detailTextLabel?.text = formatter.string(from: self.model.cardioEntries[indexPath.row].date!)
             print("CR")
         }
         else {

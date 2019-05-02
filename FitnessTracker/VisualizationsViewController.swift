@@ -57,8 +57,15 @@ class VisualizationsViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fromDatePicker.maximumDate = Date()
+        self.toDatePicker.maximumDate = Date()
+        fromDatePicker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
         self.exerciseNamePicker.delegate = self
         self.exerciseNamePicker.dataSource = self
+    }
+    
+    @objc func datePickerChanged(picker: UIDatePicker) {
+        self.toDatePicker.minimumDate = fromDatePicker.date
     }
     
     func getMode(sender: UIButton) -> String {

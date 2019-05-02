@@ -27,6 +27,7 @@ class AddStrengthEntryViewController: UIViewController, UIPickerViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.datePicker.maximumDate = Date()
         self.exercisePicker.delegate = self
         self.exercisePicker.dataSource = self
         self.weightUnit.delegate = self
@@ -60,7 +61,7 @@ class AddStrengthEntryViewController: UIViewController, UIPickerViewDelegate, UI
     func loadFields() {
         if (self.entry != nil){ // we are not adding a new entry but rather loading an existing one
             if (entry.weight != nil){
-                weight.text = String(entry.weight!)
+                weight.text = String(Int(entry.weight!))
             }
             if (entry.reps != nil){
                 reps.text = String(entry.reps!)
