@@ -10,6 +10,8 @@ import UIKit
 
 class EditViewController: UIViewController, UITableViewDelegate {
 
+    var model: DataModel!
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -20,3 +22,6 @@ class EditViewController: UIViewController, UITableViewDelegate {
 
 }
 
+class EditableStringArrayTableView: UITableViewController {
+    
+}
