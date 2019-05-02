@@ -97,7 +97,7 @@ class CategoryDataViewController: UIViewController, UITableViewDelegate, UITable
         }
         else if segue.identifier == "addCardioEntry" {
             let destinationController = segue.destination as! AddCardioEntryViewController
-            destinationController.exercises = self.model.strengthTrainingExercises.sorted()
+            destinationController.exercises = self.model.cardioExercises.sorted()
             destinationController.model = self.model
             destinationController.entry = self.model.cardioEntries[(tableView.indexPathForSelectedRow?.row)!]
             destinationController.entryIndex = (tableView.indexPathForSelectedRow?.row)!

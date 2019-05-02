@@ -68,9 +68,11 @@ class EditableStringArrayTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             let newExercise = textField?.text! ?? ""
-            self.data.append(newExercise)
-            self.data.sort()
-            self.apply()
+            if (newExercise != ""){
+                self.data.append(newExercise)
+                self.data.sort()
+                self.apply()
+            }
         }))
         
         self.present(alert, animated: true, completion: nil)
