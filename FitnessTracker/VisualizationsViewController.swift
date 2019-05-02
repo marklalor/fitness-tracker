@@ -9,12 +9,13 @@
 import UIKit
 import Charts
 
-class VisualizationsViewController: UIViewController {
-
+class VisualizationsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     var model: DataModel!
     
+    @IBOutlet weak var exerciseNamePicker: UIPickerView!
     @IBOutlet weak var categoryPicker: UISegmentedControl!
-    
+    @IBOutlet weak var toDatePicker: UIDatePicker!
+    @IBOutlet weak var fromDatePicker: UIDatePicker!
     @IBOutlet weak var weightOverTime: UIButton!
     @IBOutlet weak var strengthTrainingExerciseDistribution: UIButton!
     @IBOutlet weak var durationOverTime: UIButton!
@@ -29,10 +30,36 @@ class VisualizationsViewController: UIViewController {
         strengthTrainingExerciseDistribution.isEnabled = isStrength
         durationOverTime.isEnabled = !isStrength
         cardioExerciseDistribution.isEnabled = !isStrength
+        self.exerciseNamePicker.reloadAllComponents();
+    }
+    
+    func data(for pickerView: UIPickerView) -> [String] {
+        if (categoryPicker.titleForSegment(at: categoryPicker.selectedSegmentIndex) == "Strength Training"){
+            print("str")
+            return self.model!.strengthTrainingExercises.sorted()
+        }
+        else {
+            print("car")
+            return self.model!.cardioExercises.sorted()
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return data(for: pickerView).count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return data(for: pickerView)[row]
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.exerciseNamePicker.delegate = self
+        self.exerciseNamePicker.dataSource = self
     }
     
     func getMode(sender: UIButton) -> String {

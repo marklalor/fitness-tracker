@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e2s-SY-U6x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e2s-SY-U6x">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -424,7 +424,10 @@
                         <outlet property="cardioExerciseDistribution" destination="7Xu-MG-u9F" id="YnV-9n-ZGq"/>
                         <outlet property="categoryPicker" destination="TLj-sP-5z7" id="zBr-rB-WaL"/>
                         <outlet property="durationOverTime" destination="wTn-jy-hOX" id="DYQ-1e-45j"/>
+                        <outlet property="exerciseNamePicker" destination="dco-Co-LNz" id="xCU-v5-MNR"/>
+                        <outlet property="fromDatePicker" destination="48b-Nt-VEv" id="0Eh-AW-p5T"/>
                         <outlet property="strengthTrainingExerciseDistribution" destination="Elv-J0-S6Y" id="p1J-IE-H4N"/>
+                        <outlet property="toDatePicker" destination="qZ9-wU-jnO" id="U2s-SE-Dj7"/>
                         <outlet property="weightOverTime" destination="crh-PR-ZSG" id="cSK-99-7nT"/>
                     </connections>
                 </viewController>
