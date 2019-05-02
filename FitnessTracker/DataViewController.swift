@@ -23,7 +23,8 @@ class DataViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.model = DataModel.fromStorage()
         
-        let visualizationsController = self.tabBarController!.viewControllers![1] as! VisualizationsViewController
+        let visualizationsNavigationController = self.tabBarController!.viewControllers![1] as! UINavigationController
+        let visualizationsController = visualizationsNavigationController.topViewController! as! VisualizationsViewController
         let editNavigationController = self.tabBarController!.viewControllers![2] as! UINavigationController
         let editController = editNavigationController.topViewController! as! EditViewController
         

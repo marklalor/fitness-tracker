@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e2s-SY-U6x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e2s-SY-U6x">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -112,7 +112,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Xz9-RM-FjK" kind="relationship" relationship="viewControllers" id="WtG-pq-Qsz"/>
-                        <segue destination="aZw-Jo-XcL" kind="relationship" relationship="viewControllers" id="jQ8-9k-3aR"/>
+                        <segue destination="DgI-ez-6hT" kind="relationship" relationship="viewControllers" id="jQ8-9k-3aR"/>
                         <segue destination="d4S-Kw-YM9" kind="relationship" relationship="viewControllers" id="uQi-y0-sNd"/>
                     </connections>
                 </tabBarController>
@@ -303,22 +303,149 @@
             </objects>
             <point key="canvasLocation" x="2902.898550724638" y="-635.49107142857144"/>
         </scene>
-        <!--Visualizations-->
+        <!--Visualizations View Controller-->
         <scene sceneID="B1d-ab-h9C">
             <objects>
                 <viewController id="aZw-Jo-XcL" customClass="VisualizationsViewController" customModule="FitnessTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5IY-eQ-eKm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dco-Co-LNz">
+                                <rect key="frame" x="0.0" y="217" width="414" height="114"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercise:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAM-p7-dLH">
+                                <rect key="frame" x="20" y="188" width="69" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLs-bw-ZpV">
+                                <rect key="frame" x="20" y="339" width="85" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXU-oX-2M4">
+                                <rect key="frame" x="20" y="477" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="48b-Nt-VEv">
+                                <rect key="frame" x="0.0" y="368" width="414" height="101"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="578508752.31596506">
+                                    <!--2019-05-02 16:52:32 +0000-->
+                                </date>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="qZ9-wU-jnO">
+                                <rect key="frame" x="0.0" y="506" width="414" height="101"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="578508752.31596506">
+                                    <!--2019-05-02 16:52:32 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crh-PR-ZSG">
+                                <rect key="frame" x="20" y="676" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Weight over Time"/>
+                                <connections>
+                                    <segue destination="Szj-m3-kkg" kind="show" id="dql-7A-8MM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wTn-jy-hOX">
+                                <rect key="frame" x="239" y="676" width="131" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Duration over Time"/>
+                                <connections>
+                                    <segue destination="Szj-m3-kkg" kind="show" id="fBn-ok-j8i"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xu-MG-u9F">
+                                <rect key="frame" x="239" y="714" width="141" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Exercise Distribution"/>
+                                <connections>
+                                    <segue destination="Szj-m3-kkg" kind="show" id="cKn-Zs-HST"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TLj-sP-5z7">
+                                <rect key="frame" x="20" y="153" width="374" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Strength Training"/>
+                                    <segment title="Cardio"/>
+                                </segments>
+                                <connections>
+                                    <action selector="categoryChanged:" destination="aZw-Jo-XcL" eventType="valueChanged" id="SMR-WA-dUv"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Strength" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Oc-Vn-mHQ">
+                                <rect key="frame" x="20" y="647" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cardio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXe-M3-3ra">
+                                <rect key="frame" x="239" y="647" width="51" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Elv-J0-S6Y">
+                                <rect key="frame" x="20" y="714" width="141" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Exercise Distribution"/>
+                                <connections>
+                                    <segue destination="Szj-m3-kkg" kind="show" id="Iul-WR-rxg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Visualizations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AF8-QZ-ri3">
+                                <rect key="frame" x="20" y="97" width="137" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Jg8-3v-PMT"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Visualizations" id="cNe-kX-269"/>
+                    <navigationItem key="navigationItem" id="I66-pT-vk4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="cardioExerciseDistribution" destination="7Xu-MG-u9F" id="YnV-9n-ZGq"/>
+                        <outlet property="categoryPicker" destination="TLj-sP-5z7" id="zBr-rB-WaL"/>
+                        <outlet property="durationOverTime" destination="wTn-jy-hOX" id="DYQ-1e-45j"/>
+                        <outlet property="strengthTrainingExerciseDistribution" destination="Elv-J0-S6Y" id="p1J-IE-H4N"/>
+                        <outlet property="weightOverTime" destination="crh-PR-ZSG" id="cSK-99-7nT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNi-5d-sIy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="736"/>
+            <point key="canvasLocation" x="957.97101449275374" y="735.9375"/>
+        </scene>
+        <!--Chart Controller-->
+        <scene sceneID="2YJ-fe-Onh">
+            <objects>
+                <viewController id="Szj-m3-kkg" customClass="ChartController" customModule="FitnessTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b1v-96-HGI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="BR6-76-d6j"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwQ-z9-9ro" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1912" y="736"/>
         </scene>
         <!--Edit Exercises-->
         <scene sceneID="WxB-js-nBN">
@@ -446,5 +573,27 @@
             </objects>
             <point key="canvasLocation" x="2903" y="-1282"/>
         </scene>
+        <!--Visualizations-->
+        <scene sceneID="lKZ-Gg-avd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DgI-ez-6hT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Visualizations" id="cNe-kX-269"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TrE-P6-GSb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aZw-Jo-XcL" kind="relationship" relationship="rootViewController" id="3Tu-yK-AQy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Szv-Cj-aLy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="47.826086956521742" y="735.9375"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fBn-ok-j8i"/>
+    </inferredMetricsTieBreakers>
 </document>
