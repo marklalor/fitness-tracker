@@ -89,11 +89,15 @@ class VisualizationsViewController: UIViewController, UIPickerViewDelegate, UIPi
             let exercises = self.exercisesForCurrentCategory()
             chartController.exerciseName = exercises[self.exerciseNamePicker.selectedRow(inComponent: 0)]
             chartController.mode = getMode(sender: sender as! UIButton)
+            chartController.startDate = self.fromDatePicker.date
+            chartController.endDate = self.toDatePicker.date
         } else if let chartController = segue.destination as? PieChartController {
             chartController.model = self.model
             let exercises = self.exercisesForCurrentCategory()
             chartController.exerciseName = exercises[self.exerciseNamePicker.selectedRow(inComponent: 0)]
             chartController.mode = getMode(sender: sender as! UIButton)
+            chartController.startDate = self.fromDatePicker.date
+            chartController.endDate = self.toDatePicker.date
         }
     }
 
@@ -107,6 +111,8 @@ class LineChartController: UIViewController, ChartViewDelegate {
     var model: DataModel!
     var exerciseName: String!
     var mode: String!
+    var startDate: Date!
+    var endDate: Date!
     
     var dataEntries: [ChartDataEntry] = []
     
@@ -114,21 +120,25 @@ class LineChartController: UIViewController, ChartViewDelegate {
         return makeDataEntries(
             entries: self.model.strengthTrainingEntries,
             yGetter: {Double($0.weight!)},
-            nameGetter: {$0.exerciseName!})
+            nameGetter: {$0.exerciseName!},
+            dateGetter: {$0.date!})
     }
     
     func makeCardioDataEntries() -> [ChartDataEntry] {
         return makeDataEntries(
             entries: self.model.cardioEntries,
             yGetter: {Double($0.duration!)},
-            nameGetter: {$0.exerciseName!})
+            nameGetter: {$0.exerciseName!},
+            dateGetter: {$0.date!})
     }
     
-    func makeDataEntries<T>(entries: [T], yGetter: (T) -> Double, nameGetter: (T) -> String) -> [ChartDataEntry] {
+    func makeDataEntries<T>(entries: [T], yGetter: (T) -> Double, nameGetter: (T) -> String, dateGetter: (T) -> Date) -> [ChartDataEntry] {
         self.model.sortEntriesByDate()
         
         return zip(entries.indices, entries)
             .filter{nameGetter($0.1) == exerciseName}
+            .filter{dateGetter($0.1) >= startDate}
+            .filter{dateGetter($0.1) <= endDate}
             .map{ChartDataEntry(x: Double($0.0), y: Double(yGetter($0.1)))}
     }
     
@@ -158,6 +168,8 @@ class PieChartController: UIViewController, ChartViewDelegate {
     var model: DataModel!
     var exerciseName: String!
     var mode: String!
+    var startDate: Date!
+    var endDate: Date!
     
     var dataEntries: [ChartDataEntry] = []
     
