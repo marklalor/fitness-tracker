@@ -51,9 +51,7 @@ class DataViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "ExerciseCategoryCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? UITableViewCell else {
-            fatalError("The dequeued cell is not an instance of ExerciseCategoryCell.")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         cell.textLabel?.text = self.categories[indexPath.row]
         return cell;
     }

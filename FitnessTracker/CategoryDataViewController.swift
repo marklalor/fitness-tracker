@@ -13,6 +13,8 @@ class CategoryDataViewController: UIViewController, UITableViewDelegate, UITable
     
     var category: String!
     var model : DataModel!
+    var ascendingName: Bool = true
+    var ascendingDate: Bool = true
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,11 +27,11 @@ class CategoryDataViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func sortBy(_ sender: Any) {
         if (sortPicker.titleForSegment(at: sortPicker.selectedSegmentIndex) == "Exercise Name"){
-            self.model!.sortEntriesByName()
+            self.model!.sortEntriesByName(ascending: true)
             tableView.reloadData()
         }
         else if (sortPicker.titleForSegment(at: sortPicker.selectedSegmentIndex) == "Date"){
-            self.model.sortEntriesByDate()
+            self.model.sortEntriesByDate(ascending: true)
             tableView.reloadData()
         }
     }
@@ -71,9 +73,7 @@ class CategoryDataViewController: UIViewController, UITableViewDelegate, UITable
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MMM-yyyy"
         let cellIdentifier = "ExerciseEntryCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? UITableViewCell  else {
-            fatalError("The dequeued cell is not an instance of ExerciseCategoryCell.")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) 
         if (category == "Strength Training"){
             cell.textLabel?.text = self.model.strengthTrainingEntries[indexPath.row].exerciseName
             cell.detailTextLabel?.text = formatter.string(from: self.model.strengthTrainingEntries[indexPath.row].date!)

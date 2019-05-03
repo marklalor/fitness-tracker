@@ -77,11 +77,11 @@ class AddStrengthEntryViewController: UIViewController, UIPickerViewDelegate, UI
             }
             if (entry.weightUnit != nil){
                 let str = entry.weightUnit!.rawValue
-                let index = StrengthTrainingEntry.WeightUnit.allCases.index(of: StrengthTrainingEntry.WeightUnit(rawValue: str)!)
+                let index = StrengthTrainingEntry.WeightUnit.allCases.firstIndex(of: StrengthTrainingEntry.WeightUnit(rawValue: str)!)
                 self.weightUnit.selectRow(index!, inComponent: 0, animated: true)
             }
             if (entry.exerciseName != nil){
-                let index = self.model.strengthTrainingExercises.sorted().index(of: entry.exerciseName!)
+                let index = self.model.strengthTrainingExercises.sorted().firstIndex(of: entry.exerciseName!)
                 if (index != nil){
                     self.exercisePicker.selectRow(index!, inComponent: 0, animated: true)
                 }

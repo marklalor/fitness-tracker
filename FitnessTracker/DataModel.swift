@@ -64,13 +64,13 @@ class StrengthTrainingEntry: WorkoutEntry {
     }
     
     func toDictionary() -> [String:Any] {
-        return ["exerciseName": exerciseName,
-                "date": date?.millisecondsSince1970,
-                "weight": weight,
-                "weightUnit": weightUnit?.rawValue,
-                "reps": reps,
-                "sets": sets,
-                "details": details]
+        return ["exerciseName": exerciseName as Any,
+                "date": date?.millisecondsSince1970 as Any,
+                "weight": weight as Any,
+                "weightUnit": weightUnit?.rawValue as Any,
+                "reps": reps as Any,
+                "sets": sets as Any,
+                "details": details as Any]
     }
 }
 
@@ -129,14 +129,26 @@ class DataModel {
         self.cardioExercises = cardioExercises
     }
     
-    public func sortEntriesByName() {
-        self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { $0.exerciseName! < $1.exerciseName! }
-        self.cardioEntries = self.cardioEntries.sorted { $0.exerciseName! < $1.exerciseName! }
+    public func sortEntriesByName(ascending: Bool) {
+        if (ascending){
+            self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { $0.exerciseName! < $1.exerciseName! }
+            self.cardioEntries = self.cardioEntries.sorted { $0.exerciseName! < $1.exerciseName! }
+        }
+        else {
+            self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { $0.exerciseName! > $1.exerciseName! }
+            self.cardioEntries = self.cardioEntries.sorted { $0.exerciseName! > $1.exerciseName! }
+        }
     }
     
-    public func sortEntriesByDate() {
-        self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { return $0.date! < $1.date! }
-        self.cardioEntries = self.cardioEntries.sorted { return $0.date! < $1.date! }
+    public func sortEntriesByDate(ascending: Bool) {
+        if (ascending){
+            self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { return $0.date! > $1.date! }
+            self.cardioEntries = self.cardioEntries.sorted { return $0.date! > $1.date! }
+        }
+        else {
+            self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { return $0.date! < $1.date! }
+            self.cardioEntries = self.cardioEntries.sorted { return $0.date! < $1.date! }
+        }
     }
     
     public static func fromStorage() -> DataModel {
@@ -164,7 +176,7 @@ class DataModel {
     
     private static func objectFromJson<T>(jsonString: String?, initFunction: ([String:AnyObject]) -> T) -> [T] {
         if let jsonData = jsonString?.data(using: String.Encoding.utf8) {
-            if let jsonObjects = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String:AnyObject]] {
+            if let jsonObjects = ((try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String:AnyObject]]) as [[String : AnyObject]]??) {
                 return jsonObjects?.map{initFunction($0)} ?? []
             }
         }
@@ -174,7 +186,7 @@ class DataModel {
     
     private static func setFromJson(jsonString: String?, defaults: Set<String>) -> Set<String> {
         if let jsonData = jsonString?.data(using: String.Encoding.utf8) {
-            if let jsonObjects = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String] {
+            if let jsonObjects = ((try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String]) as [String]??) {
                 return jsonObjects.map{Set<String>($0)} ?? defaults
             }
         }

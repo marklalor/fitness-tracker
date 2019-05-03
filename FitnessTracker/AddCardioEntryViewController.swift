@@ -50,11 +50,11 @@ class AddCardioEntryViewController: UIViewController, UIPickerViewDelegate, UIPi
             }
             if (entry.durationUnit != nil){
                 let str = entry.durationUnit!.rawValue
-                let index = CardioEntry.DurationUnit.allCases.index(of: CardioEntry.DurationUnit(rawValue: str)!)
+                let index = CardioEntry.DurationUnit.allCases.firstIndex(of: CardioEntry.DurationUnit(rawValue: str)!)
                 self.durationUnit.selectRow(index!, inComponent: 0, animated: true)
             }
             if (entry.exerciseName != nil){
-                let index = self.model.strengthTrainingExercises.sorted().index(of: entry.exerciseName!)
+                let index = self.model.strengthTrainingExercises.sorted().firstIndex(of: entry.exerciseName!)
                 if (index != nil){
                     self.exercisePicker.selectRow(index!, inComponent: 0, animated: true)
                 }

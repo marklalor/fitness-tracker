@@ -112,9 +112,7 @@ class EditableStringArrayTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "editStringArrayCell", for: indexPath) as? UITableViewCell else {
-            fatalError("The dequeued cell is not an instance of stringItemCell.")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "editStringArrayCell", for: indexPath)
         cell.textLabel?.text = self.data[indexPath.row]
         return cell
     }

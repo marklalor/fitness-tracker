@@ -133,7 +133,7 @@ class LineChartController: UIViewController, ChartViewDelegate {
     }
     
     func makeDataEntries<T>(entries: [T], yGetter: (T) -> Double, nameGetter: (T) -> String, dateGetter: (T) -> Date) -> [ChartDataEntry] {
-        self.model.sortEntriesByDate()
+        self.model.sortEntriesByDate(ascending: true)
         
         return zip(entries.indices, entries)
             .filter{nameGetter($0.1) == exerciseName}
@@ -178,7 +178,8 @@ class PieChartController: UIViewController, ChartViewDelegate {
             entries: self.model.strengthTrainingEntries,
             exercises:  self.model.strengthTrainingExercises.sorted(),
             yGetter: {Double($0.weight!)},
-            nameGetter: {$0.exerciseName!})
+            nameGetter: {$0.exerciseName!},
+            dateGetter: {$0.date!})
     }
     
     func makeCardioDataEntries() -> [ChartDataEntry] {
@@ -186,12 +187,13 @@ class PieChartController: UIViewController, ChartViewDelegate {
             entries: self.model.cardioEntries,
             exercises:  self.model.cardioExercises.sorted(),
             yGetter: {Double($0.duration!)},
-            nameGetter: {$0.exerciseName!})
+            nameGetter: {$0.exerciseName!},
+            dateGetter: {$0.date!})
     }
     
     
-    func makeDataEntries<T>(entries: [T], exercises: [String], yGetter: (T) -> Double, nameGetter: (T) -> String) -> [ChartDataEntry] {
-        self.model.sortEntriesByDate()
+    func makeDataEntries<T>(entries: [T], exercises: [String], yGetter: (T) -> Double, nameGetter: (T) -> String, dateGetter: (T) -> Date) -> [ChartDataEntry]{
+        self.model.sortEntriesByDate(ascending: true)
         
 //        return exercises.map{entries.filter()}
 
