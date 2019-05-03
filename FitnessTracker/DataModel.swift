@@ -142,12 +142,12 @@ class DataModel {
     
     public func sortEntriesByDate(ascending: Bool) {
         if (ascending){
-            self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { return $0.date! > $1.date! }
-            self.cardioEntries = self.cardioEntries.sorted { return $0.date! > $1.date! }
-        }
-        else {
             self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { return $0.date! < $1.date! }
             self.cardioEntries = self.cardioEntries.sorted { return $0.date! < $1.date! }
+        }
+        else {
+            self.strengthTrainingEntries = self.strengthTrainingEntries.sorted { return $0.date! > $1.date! }
+            self.cardioEntries = self.cardioEntries.sorted { return $0.date! > $1.date! }
         }
     }
     

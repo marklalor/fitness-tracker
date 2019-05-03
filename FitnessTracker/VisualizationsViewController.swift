@@ -100,11 +100,9 @@ class VisualizationsViewController: UIViewController, UIPickerViewDelegate, UIPi
             chartController.endDate = self.toDatePicker.date
         }
     }
-
 }
 
 class LineChartController: UIViewController, ChartViewDelegate {
-    
     
     @IBOutlet weak var lineChartView: LineChartView!
     
@@ -132,6 +130,24 @@ class LineChartController: UIViewController, ChartViewDelegate {
             dateGetter: {$0.date!})
     }
     
+    func getDates() -> [String]{
+        self.model.sortEntriesByDate(ascending: true)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MMM"
+        if (mode == "weightOverTime") {
+            return self.model!.strengthTrainingEntries.filter{$0.exerciseName! == self.exerciseName!}
+                .filter{$0.date! >= self.startDate!}
+                .filter{$0.date! <= self.endDate!}
+                .map{$0.date!}.map{formatter.string(from: $0)}
+        }
+        else {
+            return self.model!.cardioEntries.filter{$0.exerciseName! == exerciseName!}
+                .filter{$0.date! >= startDate!}
+                .filter{$0.date! <= endDate!}
+                .map{$0.date!}.map{formatter.string(from: $0)}
+        }
+    }
+    
     func makeDataEntries<T>(entries: [T], yGetter: (T) -> Double, nameGetter: (T) -> String, dateGetter: (T) -> Date) -> [ChartDataEntry] {
         self.model.sortEntriesByDate(ascending: true)
         
@@ -145,17 +161,31 @@ class LineChartController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lineChartView.noDataText = "No data"
-        
+        self.model.sortEntriesByDate(ascending: true)
+        var xvalues: [String] = [String]()
+
         if (mode == "weightOverTime") {
             self.dataEntries = makeStrengthDataEntries()
+            print(getDates())
+            xvalues.append(contentsOf: getDates())
         } else {
             self.dataEntries = makeCardioDataEntries()
+            print(getDates())
+            xvalues.append(contentsOf: getDates())
         }
         
         let chartDataSet = LineChartDataSet(entries: self.dataEntries)
         
         let chartData = LineChartData(dataSet: chartDataSet)
         
+        let xAxis = lineChartView.xAxis
+        xAxis.labelPosition = .bothSided
+        xAxis.axisMinimum = 0.0
+        xAxis.granularity = 1.0
+        
+        lineChartView.leftAxis.enabled = false
+        lineChartView.rightAxis.enabled = false
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xvalues)
         
         self.lineChartView.data = chartData
     }
@@ -177,7 +207,6 @@ class PieChartController: UIViewController, ChartViewDelegate {
         return makeDataEntries(
             entries: self.model.strengthTrainingEntries,
             exercises:  self.model.strengthTrainingExercises.sorted(),
-            yGetter: {Double($0.weight!)},
             nameGetter: {$0.exerciseName!},
             dateGetter: {$0.date!})
     }
@@ -186,21 +215,34 @@ class PieChartController: UIViewController, ChartViewDelegate {
         return makeDataEntries(
             entries: self.model.cardioEntries,
             exercises:  self.model.cardioExercises.sorted(),
-            yGetter: {Double($0.duration!)},
             nameGetter: {$0.exerciseName!},
             dateGetter: {$0.date!})
     }
     
     
-    func makeDataEntries<T>(entries: [T], exercises: [String], yGetter: (T) -> Double, nameGetter: (T) -> String, dateGetter: (T) -> Date) -> [ChartDataEntry]{
+    func makeDataEntries<T>(entries: [T], exercises: [String], nameGetter: @escaping (T) -> String, dateGetter: (T) -> Date) -> [ChartDataEntry] {
         self.model.sortEntriesByDate(ascending: true)
         
-//        return exercises.map{entries.filter()}
-
-        return []
-//        return zip(self.entries.indices, self.entries)
-//            .filter{$1.exerciseName == exerciseName}
-//            .map{ChartDataEntry(x: Double($0), y: Double($1.duration!))}
+        let filteredEntries = entries
+            .filter{dateGetter($0) >= startDate!}
+            .filter{dateGetter($0) <= endDate!}
+        
+        func getEntries(withName exerciseName: String) -> Int {
+            return filteredEntries.filter{exerciseName == nameGetter($0)}.count
+        }
+        
+        return exercises
+            .map{PieChartDataEntry(value: Double(getEntries(withName: $0)), label: $0)}
+            .filter{$0.y > 0}
+    }
+    
+    
+    func random0to1() -> CGFloat {
+        return CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+    }
+    
+    func randomColor() -> UIColor {
+        return UIColor(red: random0to1(), green: random0to1(), blue: random0to1(), alpha: CGFloat(1.0))
     }
     
     override func viewDidLoad() {
@@ -213,10 +255,13 @@ class PieChartController: UIViewController, ChartViewDelegate {
             self.dataEntries = makeCardioDataEntries()
         }
         
-//        let chartDataSet = PieChartDataSet
-//        let chartData = LineChartData(dataSet: chartDataSet)
+        let colors = self.dataEntries.map{_ in randomColor()}
         
-//        self.lineChartView.data = chartData
+        let pieChartDataSet = PieChartDataSet(entries: self.dataEntries)
+        pieChartDataSet.colors = colors
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        
+        self.pieChartView.data = pieChartData
     }
     
 }
