@@ -114,7 +114,8 @@ class LineChartController: UIViewController, ChartViewDelegate {
     
     var dataEntries: [ChartDataEntry] = []
     
-    func makeStrengthDataEntries() -> [ChartDataEntry] {
+    func makeStrengthDataEntries() -> ([ChartDataEntry], [String], Date?, Date?) {
+        self.model.sortEntriesByDate(ascending: true)
         return makeDataEntries(
             entries: self.model.strengthTrainingEntries,
             yGetter: {Double($0.weight!)},
@@ -122,7 +123,8 @@ class LineChartController: UIViewController, ChartViewDelegate {
             dateGetter: {$0.date!})
     }
     
-    func makeCardioDataEntries() -> [ChartDataEntry] {
+    func makeCardioDataEntries() -> ([ChartDataEntry], [String], Date?, Date?) {
+        self.model.sortEntriesByDate(ascending: true)
         return makeDataEntries(
             entries: self.model.cardioEntries,
             yGetter: {Double($0.duration!)},
@@ -130,66 +132,96 @@ class LineChartController: UIViewController, ChartViewDelegate {
             dateGetter: {$0.date!})
     }
     
-    func getDates() -> [String]{
-        self.model.sortEntriesByDate(ascending: true)
+    func makeDataEntries<T>(entries: [T], yGetter: (T) -> Double, nameGetter: (T) -> String, dateGetter: (T) -> Date) -> ([ChartDataEntry], [String], Date?, Date?) {
+        let filteredEntries = entries
+            .filter{nameGetter($0) == exerciseName}
+            .filter{dateGetter($0) >= startDate}
+            .filter{dateGetter($0) <= endDate}
+        
+        if filteredEntries.count == 0 {
+            return ([], [], nil, nil)
+        }
+        
+        let earliest = entries.map(dateGetter).min()!
+        let latest = entries.map(dateGetter).max()!
+        
+        let numLabels = 6.0
+        let timeDiff = latest.timeIntervalSince(earliest)
+        let interval = timeDiff / numLabels
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MMM"
-        if (mode == "weightOverTime") {
-            return self.model!.strengthTrainingEntries.filter{$0.exerciseName! == self.exerciseName!}
-                .filter{$0.date! >= self.startDate!}
-                .filter{$0.date! <= self.endDate!}
-                .map{$0.date!}.map{formatter.string(from: $0)}
-        }
-        else {
-            return self.model!.cardioEntries.filter{$0.exerciseName! == exerciseName!}
-                .filter{$0.date! >= startDate!}
-                .filter{$0.date! <= endDate!}
-                .map{$0.date!}.map{formatter.string(from: $0)}
-        }
-    }
-    
-    func makeDataEntries<T>(entries: [T], yGetter: (T) -> Double, nameGetter: (T) -> String, dateGetter: (T) -> Date) -> [ChartDataEntry] {
-        self.model.sortEntriesByDate(ascending: true)
         
-        return zip(entries.indices, entries)
-            .filter{nameGetter($0.1) == exerciseName}
-            .filter{dateGetter($0.1) >= startDate}
-            .filter{dateGetter($0.1) <= endDate}
-            .map{ChartDataEntry(x: Double($0.0), y: Double(yGetter($0.1)))}
+        let labels = stride(from: 0, through: timeDiff, by: interval).map{Date(timeInterval: $0, since: earliest)}.map{formatter.string(from: $0)}
+
+        let dataEntries = filteredEntries
+            .map{ChartDataEntry(x: dateGetter($0).timeIntervalSince(earliest), y: yGetter($0))}
+        
+        return (dataEntries, labels, earliest, latest)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lineChartView.noDataText = "No data"
         self.model.sortEntriesByDate(ascending: true)
-        var xvalues: [String] = [String]()
+//        var xvalues: [String] = [String]()
 
+        var dataEntries: [ChartDataEntry]
+        var labels: [String]
+        var earliest: Date?
+        var latest: Date?
         if (mode == "weightOverTime") {
-            self.dataEntries = makeStrengthDataEntries()
-            print(getDates())
-            xvalues.append(contentsOf: getDates())
+            (dataEntries, labels, earliest, latest) = makeStrengthDataEntries()
         } else {
-            self.dataEntries = makeCardioDataEntries()
-            print(getDates())
-            xvalues.append(contentsOf: getDates())
+            (dataEntries, labels, earliest, latest) = makeCardioDataEntries()
         }
         
-        let chartDataSet = LineChartDataSet(entries: self.dataEntries)
+        if !dataEntries.isEmpty {
+        let chartDataSet = LineChartDataSet(entries: dataEntries)
         
         let chartData = LineChartData(dataSet: chartDataSet)
         
         let xAxis = lineChartView.xAxis
-        xAxis.labelPosition = .bothSided
-        xAxis.axisMinimum = 0.0
-        xAxis.granularity = 1.0
-        
-        lineChartView.leftAxis.enabled = false
-        lineChartView.rightAxis.enabled = false
-        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xvalues)
-        
-        self.lineChartView.data = chartData
+            xAxis.labelPosition = .bothSided
+            xAxis.axisMinimum = 0.0
+            let secondsInDay = 86400.0
+            xAxis.axisMaximum = latest!.timeIntervalSince(earliest!) + secondsInDay
+            xAxis.granularity = 1.0
+            
+            lineChartView.leftAxis.enabled = false
+            lineChartView.rightAxis.enabled = false
+            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: labels)
+            
+            lineChartView.xAxis.valueFormatter = DefaultAxisValueFormatter(formatter: IntervalToDateFormatter(date: earliest!))
+            
+            
+            self.lineChartView.data = chartData
+        }
     }
     
+}
+
+class IntervalToDateFormatter: NumberFormatter {
+    
+    var date: Date!
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+    
+    init(date: Date) {
+        self.date = date
+        super.init()
+    }
+    
+    override func string(from interval: NSNumber) -> String? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MMM"
+        let generatedDate = Date(timeInterval: Double(truncating: interval), since: self.date)
+        return formatter.string(from: generatedDate)
+    }
+//
+//    static let sharedInstance = IntervalToDateFormatter()
 }
 
 class PieChartController: UIViewController, ChartViewDelegate {
